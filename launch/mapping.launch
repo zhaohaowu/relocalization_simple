@@ -1,0 +1,16 @@
+<launch>
+
+    <!-- Parameters -->
+    <rosparam file="$(find lio_sam)/config/params.yaml" command="load" />
+    
+    <node pkg="lio_sam" type="lio_sam_imuPreintegration"   name="lio_sam_imuPreintegration"    output="screen" 	respawn="true"/>
+    <node pkg="lio_sam" type="lio_sam_imageProjection"     name="lio_sam_imageProjection"      output="screen"     respawn="true"/>
+    <node pkg="lio_sam" type="lio_sam_featureExtraction"   name="lio_sam_featureExtraction"    output="screen"     respawn="true"/>
+    <node pkg="lio_sam" type="lio_sam_mapOptmization"      name="lio_sam_mapOptmization"       output="screen"     respawn="true"/>
+
+    <!--- Run Rviz-->
+    <node pkg="rviz" type="rviz" name="lio_sam_rviz" args="-d $(find lio_sam)/rviz//rviz.rviz" />
+
+    <node pkg="lio_sam" type="rs_to_velodyne" name="rs_to_velodyne" args="XYZIRT" output="screen"/>
+
+</launch>

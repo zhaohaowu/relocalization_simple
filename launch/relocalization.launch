@@ -1,0 +1,12 @@
+<launch>
+
+    <node pkg="lio_sam" type="relocalization"   name="relocalization"    output="screen"/>
+
+    <node pkg="lio_sam" type="sc_pose"   name="sc_pose"    output="screen"/>
+
+    <!--- Run Rviz-->
+    <node pkg="rviz" type="rviz" name="lio_sam_rviz" args="-d $(find lio_sam)/rviz/relocalization.rviz" />
+
+    <node pkg="lio_sam" type="rs_to_velodyne" name="rs_to_velodyne" args="XYZIRT" output="screen"/>
+
+</launch>
